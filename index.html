@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseCharge | Your EV Charging Dashboard</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= OPENING LOADER ================= -->
+  <div class="pulse-loader" id="pulseLoader">
+    <div class="pulse-loader-content">
+      <div class="pulse-loader-logo">⚡</div>
+      <div class="pulse-loader-text">PulseCharge</div>
+      <div class="pulse-loader-tagline">Powering the Future</div>
+      <div class="pulse-loader-dots">
+        <span class="pulse-loader-dot"></span>
+        <span class="pulse-loader-dot"></span>
+        <span class="pulse-loader-dot"></span>
+      </div>
+    </div>
+  </div>
+  <!-- ================= END LOADER ================= -->
+
+
+  <!-- ================= TOPBAR ================= -->
+  <header class="topbar">
+
+    <!-- LEFT: Brand -->
+    <div class="brand">
+      <img src="/icons/car icon.png" alt="PulseCharge Logo" class="brand-logo">
+      <div>
+        <h1>PulseCharge</h1>
+        <p>IoT Monitoring Dashboard</p>
+      </div>
+    </div>
+
+    <!-- CENTER: Navigation -->
+    <nav class="topbar-nav">
+      <a href="#">Dashboard</a>
+      <a href="#">Charging</a>
+      <a href="#">History</a>
+    </nav>
+
+    <!-- RIGHT: Connection + Profile -->
+    <div class="topbar-right">
+
+      <div class="connection">
+        <span id="connectionDot" class="dot offline"></span>
+        <span id="connectionText">ESP8266 Offline</span>
+      </div>
+
+      <!-- PROFILE ICON START -->
+      <div class="profile-container">
+
+        <button class="profile-btn" onclick="toggleProfileMenu()">
+          <div class="profile-avatar" id="profileAvatar">U</div>
+          <div class="profile-name" id="profileName">User</div>
+          <span class="profile-arrow">⌄</span>
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+          <div class="profile-header">
+            <div class="profile-avatar large" id="dropdownAvatar">U</div>
+            <div>
+              <h4 id="dropdownName">User</h4>
+              <p id="dropdownEmail">user@email.com</p>
+            </div>
+          </div>
+
+          <div class="profile-divider"></div>
+
+          <a href="#" onclick="openProfile()">👤 My Profile</a>
+          <a href="#">⚙️ Settings</a>
+
+          <div class="profile-divider"></div>
+
+          <a href="#" class="logout-btn" onclick="logoutUser()">🚪 Logout</a>
+
+        </div>
+
+      </div>
+      <!-- PROFILE ICON END -->
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= MAIN ================= -->
+  <main class="container">
+
+    <section class="hero">
+      <div>
+        <span class="badge">LIVE MONITORING</span>
+        <h2>Charging Station Status</h2>
+        <p>Welcome to the PulseCharge dashboard!</p>
+      </div>
+      <div class="hero-status">
+        <span id="systemStatusDot" class="big-dot offline"></span>
+        <div>
+          <strong id="systemStatus">System Offline</strong>
+          <small id="lastUpdated">No data received yet</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards">
+
+      <article class="card">
+        <div class="card-icon">🚗</div>
+        <div class="card-label">Vehicle</div>
+        <div id="vehicleStatus" class="card-value">No Car Detected</div>
+        <div id="vehicleSub" class="card-sub">Waiting for vehicle</div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-label">Charging</div>
+        <div id="chargingStatus" class="card-value">Not Charging</div>
+        <div id="chargingSub" class="card-sub">Charging is inactive</div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌡️</div>
+        <div class="card-label">Temperature</div>
+        <div id="temperatureValue" class="card-value">-- °C</div>
+        <div id="temperatureSub" class="card-sub">No temperature data</div>
+      </article>
+
+      <!--<article class="card">
+        <div class="card-icon">🔌</div>
+        <div class="card-label">Relay</div>
+        <div id="relayStatus" class="card-value">OFF</div>
+        <div id="relaySub" class="card-sub">Relay is inactive</div>
+      </article>  -->
+      <article class="card">
+        <div class="card-icon">📡</div>
+        <div class="card-label">ESP8266</div>
+        <div id="esp8266Status" class="card-value">Offline</div>
+        <div id="esp8266Sub" class="card-sub">No device connected</div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">💾</div>
+        <div class="card-label">Data Records</div>
+        <div id="recordCount" class="card-value">0</div>
+        <div class="card-sub">Readings received</div>
+      </article>
+
+    </section>
+
+    <!-- ================= WHY CHOOSE PULSECHARGE ================= -->
+    <section class="why-choose">
+
+      <div class="section-header">
+        <span class="small-tag">⚡ Why PulseCharge</span>
+        <h2>Built For The <span>Future</span></h2>
+        <p>
+          PulseCharge combines IoT technology with modern design to deliver
+          a smart, reliable, and intelligent EV charging experience.
+        </p>
+      </div>
+
+      <div class="why-grid">
+
+        <div class="why-card">
+          <span class="why-number">01</span>
+          <div class="why-icon">⚡</div>
+          <h3>Wireless Charging</h3>
+          <p>No cables, no hassle. Our inductive charging system delivers power to your vehicle the moment it parks.</p>
+        </div>
+
+        <div class="why-card">
+          <span class="why-number">02</span>
+          <div class="why-icon">📡</div>
+          <h3>Real-Time IoT Monitoring</h3>
+          <p>ESP8266 sensors stream live data to your dashboard — track temperature, relay status, and vehicle presence 24/7.</p>
+        </div>
+
+        <div class="why-card">
+          <span class="why-number">03</span>
+          <div class="why-icon">🔋</div>
+          <h3>Smart Battery Care</h3>
+          <p>Intelligent charge control protects your battery health and extends its lifespan with adaptive power delivery.</p>
+        </div>
+
+        <div class="why-card">
+          <span class="why-number">04</span>
+          <div class="why-icon">🛡️</div>
+          <h3>Safety First</h3>
+          <p>Over-temperature protection, auto relay cut-off, and continuous monitoring keep every charging session safe.</p>
+        </div>
+
+        <div class="why-card">
+          <span class="why-number">05</span>
+          <div class="why-icon">🌱</div>
+          <h3>Eco-Friendly</h3>
+          <p>100% clean energy delivery. Reduce your carbon footprint while charging your EV efficiently.</p>
+        </div>
+
+       <!-- <div class="why-card">
+          <span class="why-number">06</span>
+          <div class="why-icon">📊</div>
+          <h3>Data Analytics</h3>
+          <p>View live temperature history and charging trends. Make smarter decisions with clear, real-time insights.</p>
+        </div>-->
+
+      </div>
+
+    </section>
+    <!-- ================= END WHY CHOOSE ================= -->
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Live Sensor Data</h3>
+          <p>Current values received from the IoT system</p>
+        </div>
+        <span id="apiStatus" class="status-pill neutral">API Not Connected</span>
+      </div>
+
+      <div class="data-grid">
+        <div class="data-row"><span>Vehicle Detected</span><strong id="liveVehicle">No</strong></div>
+        <div class="data-row"><span>Charging</span><strong id="liveCharging">No</strong></div>
+        <div class="data-row"><span>Temperature</span><strong id="liveTemperature">-- °C</strong></div>
+        <div class="data-row"><span>Relay</span><strong id="liveRelay">OFF</strong></div>
+        <div class="data-row"><span>ESP8266</span><strong id="liveEsp8266">Offline</strong></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Charging Status & History</h3>
+          <p>Historical readings will appear here when real data is received.</p>
+        </div>
+      </div>
+
+      <div class="chart-area">
+        <canvas id="temperatureChart"></canvas>
+        <div id="emptyChart" class="empty-chart">
+          <span>📊</span>
+          <strong>No data available yet</strong>
+          <small>Connect ESP8266 and start sending sensor data.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel collection-panel">
+      <div>
+        <h3>Data Collection</h3>
+        <p>
+          This dashboard is ready to receive real-time data later.
+          Permanent storage should be handled by the Spring Boot backend and MySQL.
+        </p>
+      </div>
+
+      <div class="collection-info">
+        <div>
+          <span>Last Reading</span>
+          <strong id="collectionTime">No data</strong>
+        </div>
+        <div>
+          <span>Stored in Browser</span>
+          <strong id="browserRecords">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-panel">
+      <div>
+        <h3>Dashboard Testing</h3>
+        <p>Use demo data to test the website before the hardware is ready.</p>
+      </div>
+      <div class="test-buttons">
+        <button id="demoButton" class="btn primary">Run Demo Data</button>
+        <button id="resetButton" class="btn secondary">Reset to No Data</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>IoT Based Wireless EV Charging Station • Final Year Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+
+  <!-- ================= LOADER SCRIPT ================= -->
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('pulseLoader');
+      if (!loader) return;
+
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 800);
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>

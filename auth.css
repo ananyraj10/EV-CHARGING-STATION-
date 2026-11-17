@@ -1,0 +1,377 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   PULSECHARGE - LOGIN / REGISTER (DARK NEON THEME)
+   ========================================================= */
+
+:root {
+    --bg-primary:    #0a0e1f;
+    --bg-secondary:  #131829;
+    --bg-elevated:   #1a2035;
+    --electric-green: #00ffb3;
+    --electric-cyan:  #00b4ff;
+    --text-primary:   #e8ecf5;
+    --text-secondary: #a8b2cc;
+    --text-muted:     #5a6480;
+    --border:         rgba(0, 255, 179, 0.15);
+    --glow-green:     0 0 20px rgba(0, 255, 179, 0.5);
+    --shadow:         0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    color: var(--text-primary);
+
+    background: var(--bg-primary);
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(0, 255, 179, 0.10), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(0, 180, 255, 0.10), transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(0, 102, 255, 0.10), transparent 42%),
+        radial-gradient(circle at 20% 85%, rgba(0, 255, 179, 0.08), transparent 42%);
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 460px;
+}
+
+/* Card - Glassmorphism */
+.auth-card {
+    position: relative;
+    overflow: hidden;
+
+    background: rgba(19, 24, 41, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    padding: 42px;
+
+    box-shadow: var(--shadow);
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--electric-green) 30%,
+        var(--electric-cyan) 70%,
+        transparent);
+    box-shadow: 0 0 20px var(--electric-green);
+}
+
+.auth-card::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 179, 0.15), transparent 70%);
+    top: -80px;
+    right: -80px;
+    pointer-events: none;
+}
+
+/* Logo */
+.logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, var(--electric-green), var(--electric-cyan));
+    color: #0a0e1f;
+
+    font-size: 34px;
+    font-weight: 900;
+
+    box-shadow:
+        0 0 30px rgba(0, 255, 179, 0.5),
+        0 0 60px rgba(0, 180, 255, 0.3);
+
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 30px rgba(0, 255, 179, 0.5),
+            0 0 60px rgba(0, 180, 255, 0.3);
+    }
+    50% {
+        box-shadow:
+            0 0 40px rgba(0, 255, 179, 0.7),
+            0 0 80px rgba(0, 180, 255, 0.5);
+    }
+}
+
+h1 {
+    text-align: center;
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    background: linear-gradient(90deg, #ffffff, var(--electric-green) 60%, var(--electric-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.description {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 26px;
+    line-height: 1.6;
+}
+
+.input-group { margin-bottom: 18px; }
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 255, 179, 0.15);
+
+    background: rgba(10, 14, 31, 0.6);
+    color: var(--text-primary);
+
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+
+    transition: all 0.25s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--electric-green);
+    background: rgba(10, 14, 31, 0.9);
+    box-shadow:
+        0 0 0 4px rgba(0, 255, 179, 0.12),
+        0 0 20px rgba(0, 255, 179, 0.25);
+}
+
+.input-group input::placeholder { color: var(--text-muted); }
+
+.password-box { position: relative; }
+.password-box input { padding-right: 48px; }
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--electric-green);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    transition: 0.2s;
+}
+
+.toggle-password:hover {
+    transform: translateY(-50%) scale(1.15);
+    filter: drop-shadow(0 0 6px var(--electric-green));
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.remember {
+    display: flex;
+    gap: 8px;
+    color: var(--text-secondary);
+    align-items: center;
+    cursor: pointer;
+}
+
+.remember input,
+.terms input {
+    accent-color: var(--electric-green);
+    cursor: pointer;
+}
+
+.form-options a {
+    color: var(--electric-green);
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 10px var(--electric-green);
+}
+
+.terms {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+    cursor: pointer;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(120deg, var(--electric-green), var(--electric-cyan));
+    color: #0a0e1f;
+
+    font-family: "Orbitron", "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+
+    box-shadow:
+        0 10px 30px rgba(0, 255, 179, 0.35),
+        0 0 40px rgba(0, 180, 255, 0.2);
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 14px 40px rgba(0, 255, 179, 0.55),
+        0 0 60px rgba(0, 180, 255, 0.4);
+}
+
+.auth-button:active { transform: translateY(0); }
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 26px 0;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    flex: 1;
+}
+
+.switch-page {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.switch-page a {
+    color: var(--electric-green);
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.switch-page a:hover {
+    text-shadow: 0 0 10px var(--electric-green);
+    text-decoration: underline;
+}
+
+.message {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 18px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.message.success {
+    color: var(--electric-green);
+    background: rgba(0, 255, 179, 0.08);
+    border: 1px solid rgba(0, 255, 179, 0.25);
+}
+
+.message.error {
+    color: #ff5577;
+    background: rgba(255, 85, 119, 0.08);
+    border: 1px solid rgba(255, 85, 119, 0.25);
+}
+
+.message:empty {
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+@media (max-width: 500px) {
+    .auth-card { padding: 30px 24px; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 19px; }
+    .logo { width: 60px; height: 60px; font-size: 28px; }
+}
